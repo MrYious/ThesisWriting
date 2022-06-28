@@ -1,45 +1,41 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
+import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
+    // Main Screen
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{title: 'Welcome'}}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
+
+const HomeScreen = () => {
+  return (
+    // Home Screen
     <View style={styles.mainContainer}>
-      {/* HeaderGroup */}
       <View style={styles.headerGroup}>
         <Image
           source={require('./resources/images/logo.png')}
           style={styles.logo}
         />
         <Text style={styles.title}>BLOODSIGHT</Text>
-      </View>
-      {/* ButtonGroup */}
-      <View style={styles.buttonGroup}>
-        <TouchableOpacity
-          style={styles.button}
-          // eslint-disable-next-line no-alert
-          onPress={() => alert('Use Camera')}>
-          <Text style={styles.buttonTitle}>Camera</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          // eslint-disable-next-line no-alert
-          onPress={() => alert('Use File')}>
-          <Text style={styles.buttonTitle}>File</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          // eslint-disable-next-line no-alert
-          onPress={() => alert('View Cell Info')}>
-          <Text style={styles.buttonTitle}>Cell Info</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          // eslint-disable-next-line no-alert
-          onPress={() => alert('View About')}>
-          <Text style={styles.buttonTitle}>About</Text>
+        <TouchableOpacity style={styles.button} onPress={() => alert('Open')}>
+          <Text style={styles.buttonTitle}>START</Text>
         </TouchableOpacity>
       </View>
+      <View style={styles.temp} />
     </View>
   );
 };
@@ -47,24 +43,15 @@ const App = () => {
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#F4F4F4',
-    padding: 20,
   },
   headerGroup: {
-    flex: 1,
+    flex: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    // backgroundColor: 'gray',
   },
-  buttonGroup: {
+  temp: {
     flex: 1,
-    flexWrap: 'wrap',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignContent: 'flex-start',
-    // backgroundColor: 'blue',
   },
   logo: {
     width: 70,
@@ -78,18 +65,18 @@ const styles = StyleSheet.create({
   },
   buttonTitle: {
     fontSize: 25,
-    color: '#262626',
+    color: '#F4F4F4',
     fontWeight: '600',
   },
   button: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: 120,
-    height: 120,
-    backgroundColor: '#c3cddb',
+    width: 140,
+    height: 60,
+    backgroundColor: '#273D5B',
     padding: 10,
-    margin: 10,
-    borderRadius: 15,
+    marginTop: 40,
+    borderRadius: 30,
   },
 });
 
