@@ -4,6 +4,7 @@ import About from './About.js';
 import Camera from './Camera.js';
 import CellInfo from './CellInfo.js';
 import File from './File.js';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
@@ -78,21 +79,25 @@ const HomeScreen = ({navigation}) => {
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate('Camera')}>
+          <Icon name="camera" size={40} color="#F4F4F4" />
           <Text style={styles.buttonTitle}>Camera</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate('File')}>
+          <Icon name="file-photo-o" size={40} color="#F4F4F4" />
           <Text style={styles.buttonTitle}>File</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate('CellInfo')}>
+          <Icon name="tint" size={40} color="#F4F4F4" />
           <Text style={styles.buttonTitle}>Cell Info</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate('About')}>
+          <Icon name="info" size={40} color="#F4F4F4" />
           <Text style={styles.buttonTitle}>About</Text>
         </TouchableOpacity>
       </View>
@@ -103,24 +108,22 @@ const HomeScreen = ({navigation}) => {
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: '#F4F4F4',
-    padding: 20,
   },
   headerGroup: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    // backgroundColor: 'gray',
+    marginTop: 90,
+    marginBottom: 70,
   },
   buttonGroup: {
-    flex: 1,
     flexWrap: 'wrap',
     flexDirection: 'row',
     justifyContent: 'center',
     alignContent: 'flex-start',
-    // backgroundColor: 'blue',
+    height: 390,
   },
   logo: {
     width: 70,
@@ -134,18 +137,19 @@ const styles = StyleSheet.create({
   },
   buttonTitle: {
     fontSize: 25,
-    color: '#262626',
+    color: '#F4F4F4',
     fontWeight: '600',
+    paddingTop: 5,
   },
   button: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: 120,
-    height: 120,
-    backgroundColor: '#c3cddb',
+    width: 130,
+    height: 130,
+    backgroundColor: '#273D5B',
     padding: 10,
     margin: 10,
-    borderRadius: 15,
+    borderRadius: 25,
   },
 });
 
