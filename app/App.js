@@ -1,111 +1,95 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
+import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
-import type {Node} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import {useState} from 'react';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
+const App = () => {
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
-
-const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
+    <NavigationContainer>
+      <View style={styles.mainContainer}>
+        {/* HeaderGroup */}
+        <View style={styles.headerGroup}>
+          <Image
+            source={require('./resources/images/logo.png')}
+            style={styles.logo}
+          />
+          <Text style={styles.title}>BLOODSIGHT</Text>
         </View>
-      </ScrollView>
-    </SafeAreaView>
+        {/* ButtonGroup */}
+        <View style={styles.buttonGroup}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => alert('Use Camera')}>
+            <Text style={styles.buttonTitle}>Camera</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => alert('Use File')}>
+            <Text style={styles.buttonTitle}>File</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => alert('View Cell Info')}>
+            <Text style={styles.buttonTitle}>Cell Info</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => alert('View About')}>
+            <Text style={styles.buttonTitle}>About</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </NavigationContainer>
   );
 };
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  mainContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F4F4F4',
+    padding: 20,
   },
-  sectionTitle: {
-    fontSize: 24,
+  headerGroup: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    // backgroundColor: 'gray',
+  },
+  buttonGroup: {
+    flex: 1,
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignContent: 'flex-start',
+    // backgroundColor: 'blue',
+  },
+  logo: {
+    width: 70,
+    height: 112,
+  },
+  title: {
+    marginTop: 10,
+    fontSize: 60,
+    fontWeight: '800',
+    color: '#EA2B4E',
+  },
+  buttonTitle: {
+    fontSize: 25,
+    color: '#262626',
     fontWeight: '600',
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
+  button: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 120,
+    height: 120,
+    backgroundColor: '#c3cddb',
+    padding: 10,
+    margin: 10,
+    borderRadius: 15,
   },
 });
 
