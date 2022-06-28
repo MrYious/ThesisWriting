@@ -1,37 +1,44 @@
-/* eslint-disable no-alert */
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
-import Home from './components/screens/Home';
+import Home from './screens/Home';
 import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-const Stack = createNativeStackNavigator();
+const Initial = createNativeStackNavigator();
 
 const App = () => {
   return (
     // Main Routes
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
+      <Initial.Navigator>
+        {/* Screen 1 */}
+        <Initial.Screen
           name="Initial"
           component={InitialScreen}
           options={{headerShown: false}}
         />
-        {/* <Stack.Screen name="Home" component={Home} options={{title: 'Home'}} /> */}
-      </Stack.Navigator>
+        {/* Screen 2 */}
+        <Initial.Screen
+          name="Home"
+          component={Home}
+          options={{headerShown: false}}
+        />
+      </Initial.Navigator>
     </NavigationContainer>
   );
 };
 
-const InitialScreen = () => {
+const InitialScreen = ({navigation}) => {
   return (
     // Initial Screen
     <View style={styles.mainContainer}>
       <View style={styles.headerGroup}>
         <Image source={require('./images/logo.png')} style={styles.logo} />
         <Text style={styles.title}>BLOODSIGHT</Text>
-        <TouchableOpacity style={styles.button} onPress={() => alert('Open')}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('Home')}>
           <Text style={styles.buttonTitle}>START</Text>
         </TouchableOpacity>
       </View>

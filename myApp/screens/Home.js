@@ -1,10 +1,71 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
-import {NavigationContainer} from '@react-navigation/native';
+import About from './About.js';
+import Camera from './Camera.js';
+import CellInfo from './CellInfo.js';
+import File from './File.js';
 import React from 'react';
-import {useState} from 'react';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
+const Page = createNativeStackNavigator();
 
 const Home = () => {
+  return (
+    <Page.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: '#273D5B',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      }}>
+      {/* Screen Group 1 */}
+      <Page.Screen
+        name="HomeScreen"
+        component={HomeScreen}
+        options={{
+          title: 'Home',
+        }}
+      />
+      {/* Screen 1 */}
+      <Page.Screen
+        name="Camera"
+        component={Camera}
+        options={{
+          title: 'Camera',
+        }}
+      />
+      {/* Screen 2 */}
+      <Page.Screen
+        name="File"
+        component={File}
+        options={{
+          title: 'File',
+        }}
+      />
+      {/* Screen 3 */}
+      <Page.Screen
+        name="About"
+        component={About}
+        options={{
+          title: 'About',
+        }}
+      />
+      {/* Screen 4 */}
+      <Page.Screen
+        name="CellInfo"
+        component={CellInfo}
+        options={{
+          title: 'CellInfo',
+        }}
+      />
+    </Page.Navigator>
+  );
+};
+
+const HomeScreen = ({navigation}) => {
   return (
     <View style={styles.mainContainer}>
       {/* HeaderGroup */}
@@ -16,22 +77,22 @@ const Home = () => {
       <View style={styles.buttonGroup}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => alert('Use Camera')}>
+          onPress={() => navigation.navigate('Camera')}>
           <Text style={styles.buttonTitle}>Camera</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => alert('Use File')}>
+          onPress={() => navigation.navigate('File')}>
           <Text style={styles.buttonTitle}>File</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => alert('View Cell Info')}>
+          onPress={() => navigation.navigate('CellInfo')}>
           <Text style={styles.buttonTitle}>Cell Info</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => alert('View About')}>
+          onPress={() => navigation.navigate('About')}>
           <Text style={styles.buttonTitle}>About</Text>
         </TouchableOpacity>
       </View>
